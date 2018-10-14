@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/padding_small"
+    android:paddingEnd="@dimen/padding_avg"
+    android:paddingRight="@dimen/padding_avg"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/padding_avg"
+    android:paddingTop="@dimen/padding_small"
+    android:focusable="true">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_chat_message"
+        android:background="@drawable/chat_rounded_rectangle_background_mine"
+        android:layout_marginStart="@dimen/margin_huge"
+        android:layout_marginLeft="@dimen/margin_huge"
+        android:layout_toStartOf="@+id/text_view_user_alphabet"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black"
+        tools:text="notice"
+        android:layout_toLeftOf="@+id/text_view_user_alphabet" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_user_alphabet"
+        android:background="@drawable/circle_accent_mine"
+        android:gravity="center"
+        android:maxEms="1"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/grey_100"
+        android:textStyle="bold"
+        tools:text="a"/>
+
+</RelativeLayout>
