@@ -1,5 +1,7 @@
 package com.example.adeba.se_im.core.users.getall;
 
+import android.util.Log;
+
 import com.example.adeba.se_im.models.User;
 
 import java.util.List;
@@ -32,5 +34,6 @@ public class GetUsersPresenter implements GetUsersContract.Presenter, GetUsersCo
     @Override
     public void onGetAllUsersFailure(String message) {
         mView.onGetAllUsersFailure(message);
+        Log.i("user Error", message);
     }
 }
