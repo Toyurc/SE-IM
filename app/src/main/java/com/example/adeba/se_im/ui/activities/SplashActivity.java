@@ -30,5 +30,6 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         };
+        mRunnable.run();
     }
 }

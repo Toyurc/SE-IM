@@ -39,7 +39,7 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getIntent().getStringExtra(Constants.ARG_RECEIVER));
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_content_login,
+        fragmentTransaction.replace(R.id.frame_layout_content_chat,
                 ChatFragment.newInstance(getIntent().getStringExtra(Constants.ARG_RECEIVER),
                         getIntent().getStringExtra(Constants.ARG_RECEIVER_UID),
                         getIntent().getStringExtra(Constants.ARG_FIREBASE_TOKEN)),
