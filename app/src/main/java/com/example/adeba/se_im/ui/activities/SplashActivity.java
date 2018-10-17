@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SplashActivity extends AppCompatActivity {
-    private static final int SPLASH_TIME_NS =  2000;
+    private static final int SPLASH_TIME_MS =  2000;
     private Handler mHandler;
     private Runnable mRunnable;
 
@@ -30,6 +30,8 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         };
-        mRunnable.run();
+
+        mHandler.postDelayed(mRunnable, SPLASH_TIME_MS);
+
     }
 }
