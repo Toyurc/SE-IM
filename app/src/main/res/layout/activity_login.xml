@@ -60,6 +60,15 @@ tools:context="com.example.adeba.se_im.ui.activities.LoginActivity">
     android:id="@+id/frame_layout_content_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_login_button"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.google.android.gms.common.SignInButton>
+</FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

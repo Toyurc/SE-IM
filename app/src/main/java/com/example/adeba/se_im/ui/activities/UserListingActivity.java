@@ -44,6 +44,12 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
         init();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this, "User Listing", Toast.LENGTH_SHORT).show();
+    }
+
     private void bindViews() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTabLayoutUserListing = (TabLayout) findViewById(R.id.tab_layout_user_listing);
