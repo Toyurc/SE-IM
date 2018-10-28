@@ -1,5 +1,6 @@
 package com.example.adeba.se_im.fcm;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -46,6 +47,7 @@ public class FcmNotificationBuilder {
 
     }
 
+    @NonNull
     public static FcmNotificationBuilder initialize() {
         return new FcmNotificationBuilder();
     }
@@ -120,7 +122,6 @@ public class FcmNotificationBuilder {
         jsonObjectData.put(KEY_UID, mUid);
         jsonObjectData.put(KEY_FCM_TOKEN, mFirebaseToken);
         jsonObjectBody.put(KEY_DATA, jsonObjectData);
-
         return jsonObjectBody;
     }
 }

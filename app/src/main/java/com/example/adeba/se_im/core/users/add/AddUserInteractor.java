@@ -25,7 +25,7 @@ public class AddUserInteractor implements AddUserContract.Interactor {
     public void addUserToDatabase(final Context context, FirebaseUser firebaseUser) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         User user = new User(firebaseUser.getUid(),
-                firebaseUser.getEmail(),
+                firebaseUser.getDisplayName(),
                 new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN));
         database.child(Constants.ARG_USERS)
                 .child(firebaseUser.getUid())

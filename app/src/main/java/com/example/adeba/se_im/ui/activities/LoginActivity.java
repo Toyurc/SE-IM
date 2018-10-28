@@ -39,17 +39,17 @@ public class LoginActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private final static String TAG = LoginActivity.class.getSimpleName();
     private GoogleSignInClient mGoogleSignInClient;
-    private FirebaseUser user;
+    public static FirebaseUser firebaseUser;
     public FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001;
     public ProgressDialog progressDialog;
 
-    public static  void startIntent(Context context) {
+    public static void startIntent(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
-    public  static void startIntent(Context context, int flags) {
+    public static void startIntent(Context context, int flags) {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.setFlags(flags);
         context.startActivity(intent);
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(mAuth.getCurrentUser() != null)
+        if (mAuth.getCurrentUser() != null)
             goToUserListing();
     }
 
@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             //super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         progressDialog.setMessage("Authenticating");
@@ -126,12 +127,12 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                             progressDialog.setMessage("Adding User to Database");
-                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            firebaseUser = mAuth.getCurrentUser();
                             assert firebaseUser != null;
-                            String token =  new SharedPrefUtil(LoginActivity.this).getString(Constants.ARG_FIREBASE_TOKEN);
-                            Log.e(TAG, "token: "+ token);
+                            String token = new SharedPrefUtil(LoginActivity.this).getString(Constants.ARG_FIREBASE_TOKEN);
+                            Log.e(TAG, "token: " + token);
                             User user = new User(firebaseUser.getUid(),
-                                    firebaseUser.getEmail(),
+                                    firebaseUser.getDisplayName(),
                                     new SharedPrefUtil(LoginActivity.this).getString(Constants.ARG_FIREBASE_TOKEN));
                             database.child(Constants.ARG_USERS)
                                     .child(firebaseUser.getUid())
@@ -143,24 +144,25 @@ public class LoginActivity extends AppCompatActivity {
                                                 showToast("User Added to Database");
                                                 goToUserListing();
                                             } else {
-                                                Log.e(TAG, task.getException().getMessage());                                                showToast("An error occurred while adding the user");
+                                                Log.e(TAG, task.getException().getMessage());
+                                                showToast("An error occurred while adding the user");
                                             }
                                         }
                                     });
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                           showToast("Authentication Failed.");
+                            showToast("Authentication Failed.");
                         }
                         progressDialog.dismiss();
                     }
                 });
     }
 
-    private void showToast(String message){
+    private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void goToUserListing(){
+    private void goToUserListing() {
         startActivity(new Intent(this, UserListingActivity.class));
         finish();
     }

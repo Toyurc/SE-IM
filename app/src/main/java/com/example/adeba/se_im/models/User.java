@@ -1,7 +1,7 @@
 package com.example.adeba.se_im.models;
 
 /**
- * Created by delaroy on 4/13/17.
+ *
  */
 public class User {
     public String uid;

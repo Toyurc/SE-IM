@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text_view_chat_message"
+        android:padding="@dimen/space_small"
         android:background="@drawable/chat_rounded_rectangle_background_mine"
         android:layout_marginStart="@dimen/margin_huge"
         android:layout_marginLeft="@dimen/margin_huge"
@@ -27,6 +28,7 @@
         tools:text="notice"
         android:layout_toLeftOf="@+id/text_view_user_alphabet" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,9 +37,14 @@
         android:gravity="center"
         android:maxEms="1"
         android:textAllCaps="true"
+        android:layout_alignParentEnd="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/grey_100"
         android:textStyle="bold"
-        tools:text="a"/>
+        tools:text="a"
+        android:layout_alignParentRight="true" />
 
+    <android.support.v4.widget.Space
+        android:layout_width="@dimen/space_avg"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>
