@@ -3,12 +3,9 @@ package com.example.adeba.se_im.ui.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.adeba.se_im.R;
 import com.example.adeba.se_im.models.User;
-import com.example.adeba.se_im.ui.fragments.LoginFragment;
 import com.example.adeba.se_im.utils.Constants;
 import com.example.adeba.se_im.utils.SharedPrefUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -132,7 +128,9 @@ public class LoginActivity extends AppCompatActivity {
                             String token = new SharedPrefUtil(LoginActivity.this).getString(Constants.ARG_FIREBASE_TOKEN);
                             Log.e(TAG, "token: " + token);
                             User user = new User(firebaseUser.getUid(),
+                                    firebaseUser.getEmail(),
                                     firebaseUser.getDisplayName(),
+                                    firebaseUser.getPhotoUrl().toString(),
                                     new SharedPrefUtil(LoginActivity.this).getString(Constants.ARG_FIREBASE_TOKEN));
                             database.child(Constants.ARG_USERS)
                                     .child(firebaseUser.getUid())

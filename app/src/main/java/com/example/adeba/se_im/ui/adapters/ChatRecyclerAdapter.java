@@ -1,5 +1,6 @@
 package com.example.adeba.se_im.ui.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,15 +14,19 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_ME = 1;
     private static final int VIEW_TYPE_OTHER = 2;
+    private Context context;
 
     private List<Chat> mChats;
 
-    public ChatRecyclerAdapter(List<Chat> chats) {
+    public ChatRecyclerAdapter(List<Chat> chats, Context context) {
         mChats = chats;
+        this.context = context;
     }
 
     public void add(Chat chat) {
@@ -62,7 +67,6 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String alphabet = chat.sender.substring(0, 1);
 
         myChatViewHolder.txtChatMessage.setText(chat.message);
-        myChatViewHolder.txtUserAlphabet.setText(alphabet);
     }
 
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
@@ -71,7 +75,6 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String alphabet = chat.sender.substring(0, 1);
 
         otherChatViewHolder.txtChatMessage.setText(chat.message);
-        otherChatViewHolder.txtUserAlphabet.setText(alphabet);
     }
 
     @Override
@@ -93,22 +96,22 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private static class MyChatViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtChatMessage, txtUserAlphabet;
+        private TextView txtChatMessage;
+        private CircleImageView userDp;
 
         public MyChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
-            txtUserAlphabet = (TextView) itemView.findViewById(R.id.text_view_user_alphabet);
         }
     }
 
     private static class OtherChatViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtChatMessage, txtUserAlphabet;
+        private TextView txtChatMessage;
+        private CircleImageView userDp;
 
         public OtherChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
-            txtUserAlphabet = (TextView) itemView.findViewById(R.id.text_view_user_alphabet);
         }
     }
 }

@@ -94,6 +94,8 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, It
     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
         ChatActivity.startActivity(getActivity(),
                 mUserListingRecyclerAdapter.getUser(position).email,
+                mUserListingRecyclerAdapter.getUser(position).displayName,
+                mUserListingRecyclerAdapter.getUser(position).displayPicture,
                 mUserListingRecyclerAdapter.getUser(position).uid,
                 mUserListingRecyclerAdapter.getUser(position).firebaseToken);
     }
@@ -106,7 +108,7 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, It
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-        mUserListingRecyclerAdapter = new UserListingRecyclerAdapter(users);
+        mUserListingRecyclerAdapter = new UserListingRecyclerAdapter(users, getContext());
         mRecyclerViewAllUserListing.setAdapter(mUserListingRecyclerAdapter);
         mUserListingRecyclerAdapter.notifyDataSetChanged();
     }

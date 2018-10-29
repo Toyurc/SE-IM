@@ -15,18 +15,13 @@
     android:paddingTop="@dimen/padding_small"
     android:focusable="true">
 
-    <TextView
-        android:id="@+id/text_view_user_alphabet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_accent_mine"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circular_image_view_user_dp"
+        android:src="@drawable/user"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:gravity="center"
-        android:maxEms="1"
-        android:textAllCaps="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/grey_100"
-        android:textStyle="bold"
-        tools:text="a" />
+        android:maxEms="1"/>
     
     <!--<ImageView-->
         <!--android:layout_width="60dp"-->
@@ -40,10 +35,11 @@
     <TextView
         android:id="@+id/text_view_username"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/montserrat"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/grey_700"
         tools:text="abcd@xyz.com" />

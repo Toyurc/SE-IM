@@ -9,14 +9,23 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeba.se_im.R;
 import com.example.adeba.se_im.core.logout.LogoutContract;
 import com.example.adeba.se_im.core.logout.LogoutPresenter;
 import com.example.adeba.se_im.ui.adapters.UserListingPagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserListingActivity extends AppCompatActivity implements LogoutContract.View {
     private Toolbar mToolbar;
@@ -24,6 +33,7 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
     private ViewPager mViewPagerUserListing;
 
     private LogoutPresenter mLogoutPresenter;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, UserListingActivity.class);
@@ -47,7 +57,7 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "User Listing", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "User Listing", Toast.LENGTH_SHORT).show();
     }
 
     private void bindViews() {
@@ -59,6 +69,19 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
     private void init() {
         // set the toolbar
         setSupportActionBar(mToolbar);
+        LayoutInflater mInflater=LayoutInflater.from(this);
+        View mCustomView = mInflater.inflate(R.layout.toolbar_custom_view, null);
+        if(mCustomView.getParent()!=null)
+            ((ViewGroup)mCustomView.getParent()).removeView(mCustomView); //
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView currentUserName = mCustomView.findViewById(R.id.current_user_name);
+        CircleImageView circleImageView = mCustomView.findViewById(R.id.current_user_dp);
+        currentUserName.setText(user.getDisplayName());
+        Picasso.with(this)
+                .load(user.getPhotoUrl())
+                .placeholder(R.drawable.user)
+                .into(circleImageView);
+        mToolbar.addView(mCustomView);
 
         // set the view pager adapter
         UserListingPagerAdapter userListingPagerAdapter = new UserListingPagerAdapter(getSupportFragmentManager());

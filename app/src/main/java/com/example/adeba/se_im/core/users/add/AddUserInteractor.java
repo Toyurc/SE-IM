@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.example.adeba.se_im.R;
 import com.example.adeba.se_im.models.User;
+import com.example.adeba.se_im.ui.activities.LoginActivity;
 import com.example.adeba.se_im.utils.Constants;
 import com.example.adeba.se_im.utils.SharedPrefUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,9 @@ public class AddUserInteractor implements AddUserContract.Interactor {
     public void addUserToDatabase(final Context context, FirebaseUser firebaseUser) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         User user = new User(firebaseUser.getUid(),
+                firebaseUser.getEmail(),
                 firebaseUser.getDisplayName(),
+                firebaseUser.getPhotoUrl().toString(),
                 new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN));
         database.child(Constants.ARG_USERS)
                 .child(firebaseUser.getUid())

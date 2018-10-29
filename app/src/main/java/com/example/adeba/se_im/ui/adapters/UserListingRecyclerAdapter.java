@@ -1,5 +1,6 @@
 package com.example.adeba.se_im.ui.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +9,21 @@ import android.widget.TextView;
 
 import com.example.adeba.se_im.R;
 import com.example.adeba.se_im.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListingRecyclerAdapter.ViewHolder> {
     private List<User> mUsers;
+    private Context context;
 
-    public UserListingRecyclerAdapter(List<User> users) {
+    public UserListingRecyclerAdapter(List<User> users, Context context) {
         this.mUsers = users;
+        this.context = context;
+
     }
 
     public void add(User user) {
@@ -34,12 +41,11 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = mUsers.get(position);
 
-        if (user.email != null){
-            String alphabet = user.email.substring(0, 1);
-    
-            holder.txtUsername.setText(user.email);
-            holder.txtUserAlphabet.setText(alphabet);
-          }
+        holder.txtUsername.setText(user.displayName);
+        Picasso.with(context)
+                .load(user.displayPicture)
+                .placeholder(R.drawable.user)
+                .into(holder.displayPicture);
     }
 
     @Override
@@ -55,11 +61,12 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtUserAlphabet, txtUsername;
+        private TextView txtUsername;
+        private CircleImageView displayPicture;
 
         ViewHolder(View itemView) {
             super(itemView);
-            txtUserAlphabet = (TextView) itemView.findViewById(R.id.text_view_user_alphabet);
+            displayPicture = (CircleImageView) itemView.findViewById(R.id.circular_image_view_user_dp);
             txtUsername = (TextView) itemView.findViewById(R.id.text_view_username);
         }
     }
