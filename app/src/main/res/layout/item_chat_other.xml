@@ -20,8 +20,9 @@
         android:layout_marginEnd="@dimen/margin_huge"
         android:layout_marginRight="@dimen/margin_huge"
         android:background="@drawable/other_background"
+        android:fontFamily="@font/montserrat"
         android:padding="@dimen/space_small"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/black"
         tools:text="what notice?" />
 

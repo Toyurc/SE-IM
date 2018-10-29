@@ -18,17 +18,16 @@
         android:id="@+id/text_view_chat_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_huge"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="@dimen/margin_huge"
         android:layout_marginLeft="@dimen/margin_huge"
         android:background="@drawable/mine_background"
+        android:fontFamily="@font/montserrat"
         android:padding="@dimen/space_small"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/black"
-        tools:text="notice"/>
-
-
+        tools:text="notice" />
 
 
 </RelativeLayout>
