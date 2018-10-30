@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,6 +121,10 @@ public class ChatFragment extends Fragment implements ChatContract.View, TextVie
 
     private void sendMessage() {
         String message = mETxtMessage.getText().toString();
+        if (TextUtils.isEmpty(message)){
+            Toast.makeText(getContext(), "Message cannot be empty", Toast.LENGTH_LONG).show();
+            return;
+        }
         String receiver = getArguments().getString(Constants.ARG_RECEIVER);
         String receiverUid = getArguments().getString(Constants.ARG_RECEIVER_UID);
         String sender = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
