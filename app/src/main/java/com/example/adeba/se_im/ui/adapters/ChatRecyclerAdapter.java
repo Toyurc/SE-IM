@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.adeba.se_im.R;
 import com.example.adeba.se_im.models.Chat;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,12 +23,15 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int VIEW_TYPE_ME = 1;
     private static final int VIEW_TYPE_OTHER = 2;
     private Context context;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String otherDp;
 
     private List<Chat> mChats;
 
-    public ChatRecyclerAdapter(List<Chat> chats, Context context) {
+    public ChatRecyclerAdapter(List<Chat> chats, Context context, String otherDp) {
         mChats = chats;
         this.context = context;
+        this.otherDp = otherDp;
     }
 
     public void add(Chat chat) {
@@ -67,6 +72,10 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String alphabet = chat.sender.substring(0, 1);
 
         myChatViewHolder.txtChatMessage.setText(chat.message);
+        Picasso.with(context)
+                .load(user.getPhotoUrl())
+                .placeholder(R.drawable.user)
+                .into(myChatViewHolder.userDp);
     }
 
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
@@ -75,6 +84,10 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String alphabet = chat.sender.substring(0, 1);
 
         otherChatViewHolder.txtChatMessage.setText(chat.message);
+        Picasso.with(context)
+                .load(otherDp)
+                .placeholder(R.drawable.user)
+                .into(otherChatViewHolder.userDp);
     }
 
     @Override
@@ -102,6 +115,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public MyChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
+            userDp = itemView.findViewById(R.id.user_dp);
         }
     }
 
@@ -112,6 +126,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public OtherChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
+            userDp = itemView.findViewById(R.id.user_dp);
         }
     }
 }

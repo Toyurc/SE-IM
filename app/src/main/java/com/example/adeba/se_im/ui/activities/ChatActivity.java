@@ -66,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout_content_chat,
                 ChatFragment.newInstance(getIntent().getStringExtra(Constants.ARG_RECEIVER),
                         getIntent().getStringExtra(Constants.ARG_RECEIVER_UID),
+                        getIntent().getStringExtra(Constants.ARG_RECEIVER_DP),
                         getIntent().getStringExtra(Constants.ARG_FIREBASE_TOKEN)),
                 ChatFragment.class.getSimpleName());
         fragmentTransaction.commit();

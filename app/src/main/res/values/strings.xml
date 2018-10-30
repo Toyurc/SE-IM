@@ -22,4 +22,8 @@
     <string name="cancel">Cancel</string>
     <string name="default_notification_channel_id">Channel ID</string>
     <string name="button">Button</string>
+    <string name="start">start</string>
+    <string name="NEXT">next</string>
+    <string name="PREV">prev</string>
+    <string name="skip">SKIP</string>
 </resources>

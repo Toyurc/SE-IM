@@ -5,12 +5,25 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
+    android:focusable="true"
     android:orientation="horizontal"
     android:paddingStart="@dimen/padding_avg"
     android:paddingTop="@dimen/padding_small"
     android:paddingEnd="@dimen/padding_avg"
     android:paddingRight="@dimen/padding_avg"
     android:paddingBottom="@dimen/padding_small">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/user_dp"
+        android:src="@drawable/user"
+        android:gravity="center"
+        android:maxEms="1" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="@dimen/space_small"
+        android:layout_height="wrap_content"/>
 
 
     <TextView
