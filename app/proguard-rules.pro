@@ -20,6 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 # JSR 305 annotations are for embedding nullability information.
+-keepattributes Signature
 -dontwarn javax.annotation.**
 
 # A resource is loaded with a relative path so the package of this class must be preserved.
@@ -36,4 +37,18 @@
 -dontwarn javax.annotation.**
 -dontwarn org.conscrypt.**
 -dontwarn com.squareup.picasso.**
+-keepclassmembers class com.example.adeba.se_im.models.** {
+  *;
+}
+
+-keepattributes *Annotation*
+-keepclassmembers class * {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
 

@@ -31,6 +31,22 @@
           }
         },
         {
+          "client_id": "98402777500-5trk9h8k26e771r83fdo7g3vek2p3rtq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeba.se_im",
+            "certificate_hash": "fc4ee2ee42ec476d27026253029c1347afdfe63a"
+          }
+        },
+        {
+          "client_id": "98402777500-1k7q5b33a2hmhpqtp3lbcm84m4eb295l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeba.se_im",
+            "certificate_hash": "e327edf6f8368d68944a14e433d19854217d2557"
+          }
+        },
+        {
           "client_id": "98402777500-v22phebr52kuu3q99cugt8mabq666he1.apps.googleusercontent.com",
           "client_type": 3
         }
